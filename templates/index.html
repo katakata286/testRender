@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進度條</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .progress-container {
+            width: 100%;
+            background: #f3f3f3;
+            border-radius: 20px;
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .progress-bar {
+            height: 30px;
+            width: 0;
+            background: linear-gradient(to right, #4caf50, #8bc34a);
+            border-radius: 15px;
+            transition: width 0.4s ease;
+        }
+        .progress-label {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h2>進度條範例</h2>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="progress-label" id="progress-label">進度：0%</div>
+
+    <script>
+        const progressBar = document.getElementById('progress-bar');
+        const progressLabel = document.getElementById('progress-label');
+
+        // 透過 EventSource 實時接收進度
+        const eventSource = new EventSource('/progress');
+        eventSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const percent = data.percent;
+
+            // 更新進度條
+            progressBar.style.width = percent + '%';
+            progressLabel.textContent = '進度：' + percent + '%';
+
+            // 如果進度達到 100%，關閉連接
+            if (percent >= 100) {
+                eventSource.close();
+            }
+        };
+    </script>
+</body>
+</html>
