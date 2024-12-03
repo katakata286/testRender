@@ -16,9 +16,11 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown_model.css') }}">
 </head>
 <body>
+	<!-- title & subtitle -->
     <text class="header">View Synthesis Demo</text>
 	<text class="sub-title">made by yonoka</text>
 	
+	<!-- model select dropdown list -->
 	<div class="dropdown-model" id="dropdown-model">
 		<button class="dropdown-btn" id="dropdown-btn">
 		<span class="arrow">&#9662;</span>
@@ -30,31 +32,36 @@
 		</ul>
 	</div>
 	
-	<div class="upload-container" id="upload-container">
+	<!-- image upload container -->
+	<div class="upload-container" id="upload-container" style="display: none;">
 		<div class="drop-zone" id="drop-zone">Drag & Drop Your Image Here</div>
 		<div class="button-image-upload" id="button-image-upload">choose image</div>
 		<input type="file" id="file-input" style="display: none;" accept="image/*">
 	</div>
 	
 	
+	
+	
+	<div class="model-weights-progress-bar">
+		<div class="model-weights-status-text" id="model-weights-status-text"  style="display: none;"></div>
+		<div class="progress-model-weights" id="progress-model-weights" style="display: none;">
+			<div class="progress-label" id="progress-label">downloading model weights：0%</div>
+			<div class="progress-container">
+				<div class="progress-bar" id="progress-bar"></div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="upload-sucess-container" id="upload-sucess-container" style="display: none;">
 		<div class="upload-success-text" id="upload-success-text">File uploaded successfully</div>
 		<div class="button-image-reupload" id="button-image-reupload">reupload</div>
 	</div>
-	
-	
-	<div class="model-weights-status-text" id="model-weights-status-text"  style="display: none;"></div>
-	<div class="progress-model-weights" id="progress-model-weights" style="display: none;">
-		<div class="progress-label" id="progress-label">downloading model weights：0%</div>
-		<div class="progress-container">
-			<div class="progress-bar" id="progress-bar"></div>
-		</div>
-	</div>
     
 	
-	<div class="preview" id="preview">Preview Area</div>
+	<div class="preview" id="preview" style="display: none;">Preview Area</div>
 	
 	<!-- load js file -->
+	<script type="module" src="{{ url_for('static', filename='js/global_var.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
 	<script type="module" src="{{ url_for('static', filename='js/dropbox_upload.js') }}"></script>
 	<script type="module" src="{{ url_for('static', filename='js/button_upload.js') }}"></script>
