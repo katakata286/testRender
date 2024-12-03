@@ -3,60 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>進度條</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .progress-container {
-            width: 100%;
-            background: #f3f3f3;
-            border-radius: 20px;
-            padding: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .progress-bar {
-            height: 30px;
-            width: 0;
-            background: linear-gradient(to right, #4caf50, #8bc34a);
-            border-radius: 15px;
-            transition: width 0.4s ease;
-        }
-        .progress-label {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 16px;
-            color: #555;
-        }
-    </style>
+    <title>View Synthesis Demo</title>
+	
+    <!-- import fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+	
+	<!-- load css file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/dropbox_upload.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/button_upload.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown_model.css') }}">
 </head>
 <body>
-    <h2>進度條範例</h2>
-    <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
-    </div>
-    <div class="progress-label" id="progress-label">進度：0%</div>
-
-    <script>
-        const progressBar = document.getElementById('progress-bar');
-        const progressLabel = document.getElementById('progress-label');
-
-        // 透過 EventSource 實時接收進度
-        const eventSource = new EventSource('/progress');
-        eventSource.onmessage = function(event) {
-            const data = JSON.parse(event.data);
-            const percent = data.percent;
-
-            // 更新進度條
-            progressBar.style.width = percent + '%';
-            progressLabel.textContent = '進度：' + percent + '%';
-
-            // 如果進度達到 100%，關閉連接
-            if (percent >= 100) {
-                eventSource.close();
-            }
-        };
-    </script>
+    <text class="header">View Synthesis Demo</text>
+	<text class="sub-title">made by yonoka</text>
+	
+	<div class="dropdown-model" id="dropdown-model">
+		<button class="dropdown-btn" id="dropdown-btn">
+		<span class="arrow">&#9662;</span>
+		Chose a model
+		</button>
+		<ul class="dropdown-menu">
+			<li><a id="item1" href="#">train on Objaverse</a></li>
+			<li><a id="item2" href="#">train on MVC</a></li>
+		</ul>
+	</div>
+	
+	<div class="upload-container" id="upload-container">
+		<div class="drop-zone" id="drop-zone">Drag & Drop Your Image Here</div>
+		<div class="button-image-upload" id="button-image-upload">choose image</div>
+		<input type="file" id="file-input" style="display: none;" accept="image/*">
+	</div>
+	
+	
+	<div class="upload-sucess-container" id="upload-sucess-container" style="display: none;">
+		<div class="upload-success-text" id="upload-success-text">File uploaded successfully</div>
+		<div class="button-image-reupload" id="button-image-reupload">reupload</div>
+	</div>
+	
+	
+	<div class="model-weights-status-text" id="model-weights-status-text"  style="display: none;"></div>
+	<div class="progress-model-weights" id="progress-model-weights" style="display: none;">
+		<div class="progress-label" id="progress-label">downloading model weights：0%</div>
+		<div class="progress-container">
+			<div class="progress-bar" id="progress-bar"></div>
+		</div>
+	</div>
+    
+	
+	<div class="preview" id="preview">Preview Area</div>
+	
+	<!-- load js file -->
+    <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
+	<script type="module" src="{{ url_for('static', filename='js/dropbox_upload.js') }}"></script>
+	<script type="module" src="{{ url_for('static', filename='js/button_upload.js') }}"></script>
+	<script type="module" src="{{ url_for('static', filename='js/dropdown_model.js') }}"></script>
 </body>
 </html>

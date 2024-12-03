@@ -1,0 +1,129 @@
+body {
+	font-family: 'Gamja Flower', cursive; /* 預設整個頁面使用 Gamja Flower */
+	text-align: center;
+	padding: 10px;
+	
+}
+
+.header {
+	font-family: 'Itim', cursive; /* 標題區域使用 Itim */
+	font-size: clamp(30px, 4.3vw, 50px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 20px;
+}
+
+.sub-title {
+	font-family: 'Itim', cursive; /* 標題區域使用 Itim */
+	font-size: clamp(15px, 1.5vw, 20px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.upload-success-text {
+	font-family: 'Gamja Flower', cursive;
+	margin-top: 20px;
+	font-size: clamp(30px, 3vw, 40px);
+}
+
+.button-image-reupload {
+	padding: 0px 10px;
+	border: 4px outset #999;
+	border-radius: 10px;
+	width: fit-content;
+	height: fit-content;
+	margin: 5px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #444;
+	background-color: #CCC;
+	font-size: clamp(26px, 2.5vw, 40px);
+}
+
+.button-image-reupload:hover {
+	color: #888;
+	background-color: #DDD;
+	border-color: #BBB;
+}
+
+.button-image-reupload:active {
+	color: #AAA;
+	background-color: #EEE;
+	border-color: #EEE;
+	transform: scale(0.98); /* 按下时缩小 */
+}
+
+.preview {
+	font-family: 'Gamja Flower', cursive; /* 預覽區域仍然使用 Gamja Flower */
+	margin-top: 50px;
+	font-size: clamp(30px, 3vw, 50px);
+}
+
+.preview img {
+	width: clamp(200px, 50%, 300px);
+	height: clamp(200px, 50%, 300px);
+	margin: 10px auto;
+	display: block;
+}
+
+
+.model-weights-status-text {
+	text-align: center;
+	margin-top: 20px;
+	font-size: clamp(25px, 2.3vw, 35px);
+	color: #F55;
+}
+/* progress bar */
+.progress-container {
+	width: 100%;
+	background: #f3f3f3;
+	border-radius: 20px;
+	padding: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.progress-bar {
+	height: 30px;
+	width: 0;
+	background: linear-gradient(to right, #4caf50, #8bc34a);
+	border-radius: 15px;
+	transition: width 0.4s ease;
+}
+.progress-label {
+	text-align: center;
+	font-size: clamp(20px, 2vw, 30px);
+	color: #555;
+}
+
+
+
+/* animation of website */
+.upload-container {
+    transition: all 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.upload-container.hidden {
+    opacity: 0;
+    transform: translateY(-300px);
+    pointer-events: none;
+}
+
+.upload-sucess-container {
+    transition: all 1.0s ease; /* 平滑过渡 */
+    opacity: 0; /* 初始透明度 */
+    transform: translateY(-20px); /* 初始位移：向下20px */
+}
+
+.upload-sucess-container.show {
+    opacity: 1; /* 完全显示 */
+    transform: translateY(0); /* 位移归零 */
+}
+
+.preview {
+    transition: transform 1.0s ease; /* 平滑过渡效果 */
+    transform: translateY(0); /* 默认位置 */
+}

@@ -1,0 +1,28 @@
+.button-image-upload {
+	padding: 0px 10px;
+	border: 4px outset #999;
+	border-radius: 10px;
+	width: fit-content;
+	height: fit-content;
+	margin: 5px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #444;
+	background-color: #CCC;
+	font-size: clamp(26px, 2.7vw, 40px);
+	cursor: pointer;
+}
+
+.button-image-upload:hover {
+	color: #888;
+	background-color: #DDD;
+	border-color: #BBB;
+}
+
+.button-image-upload:active {
+	color: #AAA;
+	background-color: #EEE;
+	border-color: #EEE;
+	transform: scale(0.98);
+}
